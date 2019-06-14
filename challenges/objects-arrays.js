@@ -96,7 +96,7 @@ const contactInfo = [];
 
 for(let i = 0 ; i < graduates.length ; i++) 
 {
-   contactInfo.push(graduates[i].first_name +  graduates[i].email);
+   contactInfo.push(`${graduates[i].first_name} ${graduates[i].email}`);
 } 
 console.log(contactInfo);
 
@@ -106,13 +106,8 @@ const uni = [];
 
 for(let i = 0 ; i < graduates.length ; i++)
 {
- uni.push(graduates[i].university); 
- 
-}  
- 
-for(var i = 0 ; i < uni.length ; i++){
-  if(uni[i].includes("Uni")) {
-    console.log(uni[i]);
+  if(graduates[i].university.includes("Uni")){
+    uni.push(graduates[i].university); 
   }
 }  
 
@@ -144,9 +139,7 @@ zooAnimals = [{"animal_name":"Jackal, asiatic","population":5,"scientific_name":
 */
 const animalNames = []; 
 
-zooAnimals.forEach((zooAnimals) => {
- animalNames.push(zooAnimals.animal_name  +  zooAnimals.scientific_name);
-});
+zooAnimals.forEach(animal => animalNames.push(`Name: ${animal.animal_name}, Scientific: ${animal.scientific_name}`))
 
 console.log(animalNames);
 
@@ -158,10 +151,7 @@ console.log(animalNames);
 */
 
 const lowerCase = [];  
-zooAnimals.map((zooAnimals) => {
-  var firstName = zooAnimals.animal_name.toLowerCase();
-  lowerCase.push(firstName);
-});
+zooAnimals.map(animal => lowerCase.push(animal.animal_name.toLowerCase()));
 console.log(lowerCase); 
 
 /* Request 3: .filter() 
@@ -171,12 +161,7 @@ The zoos are concenred about animals with a lower population count. Find out whi
 */
 const lowerPopulation = [];  
 
-zooAnimals.filter((zooAnimals) => {
-      if(zooAnimals.population < 5 ){
-        var temp = zooAnimals.population;
-      } 
-      lowerPopulation.push(temp);
-});
+zooAnimals.filter(animal => animal.population < 5 )
 
 console.log(lowerPopulation);
 
@@ -187,11 +172,7 @@ The zoos need to know their total animal population across the United States.  F
 */
 const populationTotal = 0; 
 
-zooAnimals.reduce((zooAnimals) => {
-  var temp = zooAnimals.population;
-
-});
-console.log(populationTotal);
+console.log(zooAnimals.map(animal => animal.population).reduce((total, population) => total += population));
 
 
 /* 
